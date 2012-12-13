@@ -557,6 +557,11 @@ scrobbler_handshake(struct scrobbler *scrobbler)
 	add_var(url, "u", scrobbler->config->username);
 	add_var(url, "t", timestr);
 	add_var(url, "a", md5);
+	if (scrobbler->config->api_key != NULL && scrobbler->config->sk != NULL)
+	{
+		add_var(url, "api_key", scrobbler->config->api_key);
+		add_var(url, "sk", scrobbler->config->sk);
+	}
 
 	g_free(timestr);
 	g_free(md5);

@@ -243,9 +243,14 @@ load_scrobbler_config(GKeyFile *file, const char *group)
 		scrobbler->password = get_string(file, group, "password", &error);
 		if (error != NULL)
 			g_error("%s\n", error->message);
+
+		scrobbler->api_key = get_string(file, group, "api_key", &error);
+		scrobbler->sk = get_string(file, group, "sk", &error);
 	} else {
 		scrobbler->username = NULL;
 		scrobbler->password = NULL;
+		scrobbler->api_key = NULL;
+		scrobbler->sk = NULL;
 	}
 
 	scrobbler->journal = get_string(file, group, "journal", NULL);
@@ -353,6 +358,8 @@ scrobbler_config_free_callback(gpointer data, G_GNUC_UNUSED gpointer user_data)
 	g_free(scrobbler->url);
 	g_free(scrobbler->username);
 	g_free(scrobbler->password);
+	g_free(scrobbler->api_key);
+	g_free(scrobbler->sk);
 	g_free(scrobbler->journal);
 	g_free(scrobbler->file);
 	g_free(scrobbler);

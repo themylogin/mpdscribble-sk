@@ -35,6 +35,8 @@ struct scrobbler_config {
 	char *url;
 	char *username;
 	char *password;
+	char *api_key;
+	char *sk;
 
 	/**
 	 * The path of the journal file.  It contains records which
